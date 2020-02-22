@@ -1,0 +1,8 @@
+<form #register="ngForm" (ngSubmit)="registerUser()">
+  <input name="mailAddress" [(ngModel)]="mail" placeholder="Podaj e-mail" />
+  <input name="password" [(ngModel)]="password" placeholder="Podaj hasło" />
+  <input name="name" [(ngModel)]="name" placeholder="Podaj imie" />
+  <input name="surname" [(ngModel)]="surname" placeholder="Podaj nazwisko" />
+  <input name="pack" [(ngModel)]="pack" placeholder="Nazwa gromady" />
+  <button>Zarejestruj</button>
+</form>
