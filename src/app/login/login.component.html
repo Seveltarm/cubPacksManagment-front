@@ -1,5 +1,28 @@
-<form #login="ngForm" (ngSubmit)="logIn()">
-  <input name="mailAddress" [(ngModel)]="mail" placeholder="Podaj e-mail" />
-  <input name="password" [(ngModel)]="password" placeholder="Podaj hasło" />
-  <button>login</button>
-</form>
+  <div class="container container__login d-flex justify-content-center align-items-center">
+    <div class="row">
+      <div class="col-12">
+        <mat-card>
+          <mat-card-header class="justify-content-center">
+            <mat-card-title class="login__header">Zaloguj</mat-card-title>
+            <mat-card-subtitle>Jeśli nie posiadasz konta kliknij <a [routerLink]="['/register']">tutaj</a></mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <form [formGroup]="loginForm" #formControls="ngForm" (ngSubmit)="logIn(formControls.value)">
+              <mat-form-field class="col-12 login__input">
+                <mat-label>Login</mat-label>
+                <input matInput formControlName="email">
+              </mat-form-field>
+            
+              <mat-form-field class="col-12 login__input">
+                <mat-label>Hasło</mat-label>
+                <input matInput formControlName="password" type="password">
+              </mat-form-field>
+              <div class="d-flex justify-content-center">
+                <button class="col-6" type="submit" [disabled]="!loginForm.valid">Zaloguj</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>

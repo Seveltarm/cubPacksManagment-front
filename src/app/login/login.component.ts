@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
@@ -11,19 +12,28 @@ import gql from 'graphql-tag';
 export class LoginComponent implements OnInit {
   public mail: String;
   public password: String;
+  public loginForm: FormGroup;
 
   constructor(
-    private apollo: Apollo
-  ) {
-  }
+    private apollo: Apollo,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email : [null, Validators.required],
+      password : [null, Validators.required]
+    });
   }
 
-  public logIn() {
+  get formControls() {
+    return this.loginForm.controls;
+  }
+
+  public logIn(formControls) {
     this.apollo.query({
       query: gql `{ 
-        user(mail: "${this.mail}", password: "${this.password}") {
+        user(mail: "${formControls.email}", password: "${formControls.password}") {
           name,
           surname,
           mail
