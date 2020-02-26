@@ -1,8 +1,33 @@
-<form #register="ngForm" (ngSubmit)="registerUser()">
-  <input name="mailAddress" [(ngModel)]="mail" placeholder="Podaj e-mail" />
-  <input name="password" [(ngModel)]="password" placeholder="Podaj hasło" />
-  <input name="name" [(ngModel)]="name" placeholder="Podaj imie" />
-  <input name="surname" [(ngModel)]="surname" placeholder="Podaj nazwisko" />
-  <input name="pack" [(ngModel)]="pack" placeholder="Nazwa gromady" />
-  <button>Zarejestruj</button>
-</form>
+<div class="container container__register d-flex justify-content-center align-items-center">
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
+        <mat-card-header class="justify-content-center">
+          <mat-card-title class="register__header">Fromularz rejestracyjny</mat-card-title>
+          <mat-card-subtitle>Jeśli posiadasz już konto kliknij <a [routerLink]="['/login']">tutaj</a> aby się zalogować</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="registerForm" #formControls="ngForm" (ngSubmit)="registerUser(formControls.value)">
+            <div class="row">
+              <div class="col-6">
+                <mat-form-field class="col-12 register__input">
+                  <mat-label>E-mail</mat-label>
+                  <input matInput formControlName="email">
+                </mat-form-field>
+              </div>  
+              <div class="col-6">
+                <mat-form-field class="col-12 register__input">
+                  <mat-label>Hasło</mat-label>
+                  <input matInput formControlName="password" type="password">
+                </mat-form-field>
+              </div>
+            </div>  
+            <div class="d-flex justify-content-center">
+              <button mat-raised-button class="col-6" type="submit" [disabled]="!registerForm.valid">Zarejestruj</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

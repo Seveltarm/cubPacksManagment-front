@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 const submitUser = gql`
 mutation addUser(
-    $mail: String!,
+    $email: String!,
     $password: String!,
     $name: String!,
     $surname: String!,
     $pack: String!
   ) {
   addUser(
-    mail: $mail,
+    email: $email,
     password: $password,
     name: $name,
     surname: $surname,
@@ -27,29 +28,29 @@ mutation addUser(
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  public mail: String;
-  public password: String;
-  public name: String;
-  public surname: String;
-  public pack: String;
-  
+  public registerForm: FormGroup;
 
   constructor(
-    private apollo: Apollo
+    private apollo: Apollo,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      email : [null, Validators.required],
+      password : [null, Validators.required]
+    });
   }
 
-  public registerUser() {
+  public registerUser(formControls) {
     this.apollo.mutate({
       mutation: submitUser,
       variables: {
-        mail: this.mail,
-        password: this.password,
-        name: this.name,
-        surname: this.surname,
-        pack: this.pack
+        email: formControls.email,
+        password: formControls.password,
+        name: formControls.name,
+        surname: formControls.surname,
+        pack: formControls.pack
       }
     }).subscribe(({ data }) => {
       console.log(data);
