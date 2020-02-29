@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+
+import { AuthService } from './../services/auth.service'
 
 @Component({
   selector: 'app-login',
@@ -16,10 +18,15 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private apollo: Apollo,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
+    if (this.auth.isLoggedIn()) {
+      this.router.navigate(['/main']);
+    }
     this.loginForm = this.formBuilder.group({
       email : [null, Validators.required],
       password : [null, Validators.required]
@@ -40,6 +47,8 @@ export class LoginComponent implements OnInit {
         }
       }`
     }).subscribe(res => {
+      this.auth.logInUser();
+      this.router.navigate(['/main']);
       console.log('zalogowano', res);
     });
   }
