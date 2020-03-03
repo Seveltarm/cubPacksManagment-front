@@ -12,4 +12,8 @@ export class BadgesListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public getBadges($event) {
+    console.log($event, 'add badges list download')
+  }
+
 }

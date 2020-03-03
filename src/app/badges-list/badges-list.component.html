@@ -1,1 +1,26 @@
-<p>badges-list works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="badges-list__header">Lista sprawności zuchowych uporządkowana zgodnie z systemem tęczy</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <mat-tab-group (selectedTabChange)="getBadges($event)">
+            <mat-tab label="Czerwony">
+                <app-list></app-list>
+            </mat-tab>
+            <mat-tab label="Żółty">
+
+            </mat-tab>
+            <mat-tab label="Zielony">
+
+            </mat-tab>
+            <mat-tab label="Niebieski">
+
+            </mat-tab>
+            <mat-tab label="Fioletowy">
+
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
