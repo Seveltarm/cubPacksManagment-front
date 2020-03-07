@@ -12,7 +12,7 @@ import { AuthService } from './../services/auth.service'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public mail: String;
+  public email: String;
   public password: String;
   public loginForm: FormGroup;
 
@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit {
   public logIn(formControls) {
     this.apollo.query({
       query: gql `{ 
-        user(mail: "${formControls.email}", password: "${formControls.password}") {
+        user(email: "${formControls.email}", password: "${formControls.password}") {
           name,
           surname,
-          mail
+          email
         }
       }`
     }).subscribe(res => {
