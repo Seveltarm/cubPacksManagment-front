@@ -9,7 +9,7 @@ export class AuthService {
 
   constructor() { }
 
-  // TODO: temporary solution, add backend support at later date, CAN'T LEAVE IT LIKE THIS!!!!
+  // TODO: temporary solution, add backend support at later date
   public logInUser() {
     sessionStorage.setItem('packAppUserLoggedIn', 'true');
     this.isUserLoggedIn.next(true);

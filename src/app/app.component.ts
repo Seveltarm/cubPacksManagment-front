@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   public title = 'app-cub-packs';
-  public isUserLoggedInt = false;
 
   constructor(
     public router: Router

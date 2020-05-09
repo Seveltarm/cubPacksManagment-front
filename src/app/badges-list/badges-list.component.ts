@@ -1,19 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Subject } from 'rxjs';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 @Component({
   selector: 'app-badges-list',
   templateUrl: './badges-list.component.html',
   styleUrls: ['./badges-list.component.scss']
 })
-export class BadgesListComponent implements OnInit {
+export class BadgesListComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  @ViewChild('tabGroup') tabGroup: MatTabGroup;
+
+  private indexValue: Subject<number> = new Subject();
+
+  constructor(
+  ) { }
 
   ngOnInit(): void {
   }
 
-  public getBadges($event) {
-    console.log($event, 'add badges list download')
+  ngAfterViewInit() {
+    this.indexValue.next(this.tabGroup.selectedIndex);
+  }
+
+  public getTabIndex($event: MatTabChangeEvent): void {
+    this.indexValue.next($event.index);
   }
 
 }

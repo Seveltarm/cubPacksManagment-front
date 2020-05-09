@@ -1,25 +1,35 @@
-<div class="row">
+<div class="row badges-list">
     <div class="col-12">
-        <div class="badges-list__header">Lista sprawności zuchowych uporządkowana zgodnie z systemem tęczy</div>
+        <h2 class="badges-list__header">Lista sprawności zuchowych</h2>
     </div>
 </div>
 <div class="row">
     <div class="col-12">
-        <mat-tab-group (selectedTabChange)="getBadges($event)">
+        <mat-tab-group #tabGroup (selectedTabChange)="getTabIndex($event)">
             <mat-tab label="Czerwony">
-                <app-list></app-list>
+                <ng-template matTabContent>
+                    <app-list [index]="indexValue"></app-list>
+                </ng-template>
             </mat-tab>
             <mat-tab label="Żółty">
-
+                <ng-template matTabContent>
+                    <app-list [index]="indexValue"></app-list>
+                </ng-template>
             </mat-tab>
             <mat-tab label="Zielony">
-
+                <ng-template matTabContent>
+                    <app-list [index]="indexValue"></app-list>
+                </ng-template>
             </mat-tab>
             <mat-tab label="Niebieski">
-
+                <ng-template matTabContent>
+                    <app-list [index]="indexValue"></app-list>
+                </ng-template>
             </mat-tab>
             <mat-tab label="Fioletowy">
-
+                <ng-template matTabContent>
+                    <app-list [index]="indexValue"></app-list>
+                </ng-template>
             </mat-tab>
         </mat-tab-group>
     </div>

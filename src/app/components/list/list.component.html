@@ -1,1 +1,4 @@
-<p>list works!</p>
+<div *ngFor="let item of list; let i = index">
+    <div>{{item.title}}</div>
+    <div [innerHTML]="item.description"></div>
+</div>
