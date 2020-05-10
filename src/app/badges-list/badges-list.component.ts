@@ -10,7 +10,7 @@ export class BadgesListComponent implements OnInit, AfterViewInit {
 
   @ViewChild('tabGroup') tabGroup: MatTabGroup;
 
-  private indexValue: Subject<number> = new Subject();
+  public indexValue: Subject<number> = new Subject();
 
   constructor(
   ) { }

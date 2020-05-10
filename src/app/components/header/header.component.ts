@@ -16,9 +16,6 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-  }
-
-  ngAfterViewChecked(): void {
     this.auth.isUserLoggedIn.subscribe((isLogged: boolean) => this.displayHeader = isLogged);
   }
 

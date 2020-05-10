@@ -1,0 +1,15 @@
+.list-item {
+    margin: 15px;
+}
+
+.list-item__content {
+    margin: 0 15px;
+}
+
+.list-item--no-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    height: 50vh;
+}
