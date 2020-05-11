@@ -1,13 +1,16 @@
+<div class="list-search">
+    <app-search (searchValue)="filterList($event)"></app-search>
+</div>
 <div class="list-item" *ngFor="let item of list; let i = index">
     <mat-card>
-        <mat-card-header class="align-items-center">
+        <mat-card-header class="align-items-center justify-content-between">
             <mat-card-title>{{item.title}}</mat-card-title>
             <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
             <img mat-card-md-image [src]="transformBaseToImage(item.logo)"/>
         </mat-card-header>
         <mat-card-content class="list-item__content">
             <p [innerHTML]="item.tasks"></p>
-            <div>Komentarz: </div>
+            <div *ngIf="item.comment">Komentarz: </div>
             <p [innerHTML]="item.comment"></p>
         </mat-card-content>    
     </mat-card>

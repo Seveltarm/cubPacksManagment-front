@@ -24,7 +24,7 @@ const getBadgesQuery = gql`
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  public list: [];
+  public list: any;
   private subscription: Subscription;
 
   @Input() index: Subject<any>;
@@ -57,6 +57,14 @@ export class ListComponent implements OnInit {
     }, (error) => {
       console.log('error', error)
     });
+  }
+
+  public filterList($event: string) {
+    this.list = this.list.filter((el: {title: string}) => {
+      if (el.title.toLowerCase().includes($event)) {
+        return el;
+      }
+  })
   }
 
   public transformBaseToImage(base64Image){
