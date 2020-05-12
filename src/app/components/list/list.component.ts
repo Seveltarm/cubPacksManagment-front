@@ -6,8 +6,8 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 const getBadgesQuery = gql`
-  query badges ($category: Int!) {
-    badges(category: $category) {
+  query badges ($category: Int!, $searchedPhrase: String) {
+    badges(category: $category, searchedPhrase: $searchedPhrase) {
       _id
       title
       description
@@ -26,6 +26,7 @@ const getBadgesQuery = gql`
 export class ListComponent implements OnInit {
   public list: any;
   private subscription: Subscription;
+  private currentIndex: Number;
 
   @Input() index: Subject<any>;
 
@@ -36,8 +37,9 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.subscription = this.index.subscribe(selectedIndex => { 
-      this.getBadges(selectedIndex);
+    this.subscription = this.index.subscribe(selectedIndex => {
+      this.currentIndex = selectedIndex;
+      this.getBadges();
     });
   }
 
@@ -45,11 +47,11 @@ export class ListComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  public getBadges(index: number): void {
+  public getBadges(): void {
     this.apollo.query({
       query: getBadgesQuery,
       variables: {
-        category: index
+        category: this.currentIndex
       }
     }).subscribe(({ data }) => {
       const response: any = data;
@@ -60,14 +62,21 @@ export class ListComponent implements OnInit {
   }
 
   public filterList($event: string) {
-    this.list = this.list.filter((el: {title: string}) => {
-      if (el.title.toLowerCase().includes($event)) {
-        return el;
+    this.apollo.query({
+      query: getBadgesQuery,
+      variables: {
+        category: this.currentIndex,
+        searchedPhrase: $event
       }
-  })
+    }).subscribe(({ data }) => {
+      const response: any = data;
+      this.list = response.badges
+    }, (error) => {
+      console.log('error', error)
+    });
   }
 
-  public transformBaseToImage(base64Image){
+  public transformBaseToImage(base64Image: string){
     return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
 
