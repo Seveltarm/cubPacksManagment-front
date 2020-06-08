@@ -28,4 +28,4 @@ $app-cub-packs-theme: mat-light-theme($app-cub-packs-primary, $app-cub-packs-acc
 
 @import "~bootstrap/dist/css/bootstrap.css";
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: hidden; }

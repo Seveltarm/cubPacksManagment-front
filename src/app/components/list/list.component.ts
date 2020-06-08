@@ -77,7 +77,9 @@ export class ListComponent implements OnInit {
   }
 
   public transformBaseToImage(base64Image: string){
-    return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
+    if (base64Image) {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
+    }  
   }
 
 }

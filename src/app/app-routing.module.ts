@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
   { path: 'badges-list', loadChildren: () => import('./badges-list/badges-list.module').then(m => m.BadgesListModule), canLoad: [AuthGuard] },
+  { path: 'stars', loadChildren: () => import('./stars/stars.module').then(m => m.StarsModule) },
   { path: '**', redirectTo: 'badges-list' }
 ];
 

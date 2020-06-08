@@ -1,4 +1,17 @@
-<app-header></app-header>
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<app-header (toggleSideNav)="toggleSideNav($event)"></app-header>
+<mat-sidenav-container class="h-100">
+  <mat-sidenav #snav [opened]="isSideNavOpened" 
+                     [mode]="mobileQuery.matches ? 'over' : 'side'"
+                     [fixedInViewport]="mobileQuery.matches" 
+                     fixedTopGap="56">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/badges-list']">Sprawności</a>
+      <a mat-list-item [routerLink]="['/stars']">Gwiazdki</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="loggedIn-height">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

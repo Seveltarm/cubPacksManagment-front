@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { AuthService } from './../../services/auth.service';
 
@@ -10,6 +10,9 @@ import { AuthService } from './../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   public displayHeader: boolean;
+  public isSideNavOpen: boolean;
+
+  @Output() toggleSideNav = new EventEmitter();
 
   constructor(
     private auth: AuthService
@@ -17,6 +20,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.auth.isUserLoggedIn.subscribe((isLogged: boolean) => this.displayHeader = isLogged);
+  }
+
+  public changeSideNavState(): void {
+    this.isSideNavOpen = !this.isSideNavOpen;
+    this.toggleSideNav.emit(this.isSideNavOpen);
   }
 
 }

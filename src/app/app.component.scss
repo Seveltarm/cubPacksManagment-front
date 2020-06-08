@@ -1,3 +1,7 @@
 .container {
     height: 100%;
 }
+
+.loggedIn-height{
+    height: calc(100% - 64px);
+}
