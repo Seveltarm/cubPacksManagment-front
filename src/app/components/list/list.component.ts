@@ -29,6 +29,7 @@ export class ListComponent implements OnInit {
   private currentIndex: Number;
 
   @Input() index: Subject<any>;
+  @Input() listType: string;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -39,7 +40,11 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.index.subscribe(selectedIndex => {
       this.currentIndex = selectedIndex;
-      this.getBadges();
+      switch(this.listType) {
+        case 'badges':
+          this.getBadges();
+          break;
+      }
     });
   }
 

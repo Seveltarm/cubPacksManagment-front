@@ -12,8 +12,7 @@ export class BadgesListComponent implements OnInit, AfterViewInit {
 
   public indexValue: Subject<number> = new Subject();
 
-  constructor(
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

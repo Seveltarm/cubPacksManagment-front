@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.auth.isLoggedIn()) {
-      this.router.navigate(['/badges-list']);
+      this.router.navigate(['/badges']);
     }
     this.loginForm = this.formBuilder.group({
       email : [null, Validators.required],
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       }`
     }).subscribe(res => {
       this.auth.logInUser();
-      this.router.navigate(['/badges-list']);
+      this.router.navigate(['/badges']);
       console.log('zalogowano', res);
     });
   }
