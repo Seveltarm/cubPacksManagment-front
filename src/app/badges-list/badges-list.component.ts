@@ -6,8 +6,8 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 const getBadgesQuery = gql`
-  query badges ($category: Int!, $searchedPhrase: String) {
-    badges(category: $category, searchedPhrase: $searchedPhrase) {
+  query badge ($category: Int!, $searchedPhrase: String) {
+    badge(category: $category, searchedPhrase: $searchedPhrase) {
       _id
       title
       description
@@ -35,7 +35,7 @@ export class BadgesListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    this.getBadges(this.tabGroup.selectedIndex)
+    this.getBadges(this.tabGroup.selectedIndex);
   }
 
   public getTabIndex($event: MatTabChangeEvent): void {
@@ -50,7 +50,7 @@ export class BadgesListComponent implements OnInit, AfterViewInit {
       }
     }).subscribe(({ data }) => {
       const response: any = data;
-      this.badges.next(response.badges);
+      this.badges.next(response.badge);
     }, (error) => {
       console.log('error', error)
     });

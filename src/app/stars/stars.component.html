@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12">
-        <h2 class="">Zadania na gwiazdki</h2>
+        <h2 class="stars-list__header">Zadania na gwiazdki</h2>
     </div>
 </div>
 <div class="row">
@@ -8,27 +8,27 @@
         <mat-tab-group #tabGroup (selectedTabChange)="getTabIndex($event)">
             <mat-tab label="Czerwony">
                 <ng-template matTabContent>
-                    <app-list [incomingData]="indexValue"></app-list>
+                    <app-list [incomingData]="stars" (searchedPhrase)=getFilteredStars($event)></app-list>
                 </ng-template>
             </mat-tab>
             <mat-tab label="Żółty">
                 <ng-template matTabContent>
-                    <app-list [incomingData]="indexValue"></app-list>
+                    <app-list [incomingData]="stars" (searchedPhrase)=getFilteredStars($event)></app-list>
                 </ng-template>
             </mat-tab>
             <mat-tab label="Zielony">
                 <ng-template matTabContent>
-                    <app-list [incomingData]="indexValue"></app-list>
+                    <app-list [incomingData]="stars" (searchedPhrase)=getFilteredStars($event)></app-list>
                 </ng-template>
             </mat-tab>
             <mat-tab label="Niebieski">
                 <ng-template matTabContent>
-                    <app-list [incomingData]="indexValue"></app-list>
+                    <app-list [incomingData]="stars" (searchedPhrase)=getFilteredStars($event)></app-list>
                 </ng-template>
             </mat-tab>
             <mat-tab label="Fioletowy">
                 <ng-template matTabContent>
-                    <app-list [incomingData]="indexValue"></app-list>
+                    <app-list [incomingData]="stars" (searchedPhrase)=getFilteredStars($event)></app-list>
                 </ng-template>
             </mat-tab>
         </mat-tab-group>
