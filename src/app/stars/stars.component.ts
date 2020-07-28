@@ -11,6 +11,7 @@ const getStarsQuery = gql`
       _id
       title
       description
+      comment
       tasks
     }
   }
@@ -38,7 +39,7 @@ export class StarsComponent implements OnInit, AfterViewInit {
   }
 
   public getTabIndex($event: MatTabChangeEvent): void {
-    this.stars.next($event.index);
+    this.getStars($event.index);
   }
 
   private getStars(currentIndex: number): void {
